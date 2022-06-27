@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let arr = [112, 121, 1231, 112, 1231, 11]
+
+    function qiuhe(arr, m, n) {
+      if (!Array.isArray(arr)) return
+      // 利用扩展运算符+Set方法去重，在用sort方法排序
+      const newArr = [...new Set(arr)].sort((a, b) => b - a),
+        N = +newArr(N - 1),
+        M = +newArr(M - 1)
+      // 利用reduce方法运算重复的数字
+      return arr.reduce((pre, curr) => {
+        if (curr === M || curr === N) {
+          return pre + curr
+        } else {
+          return pre
+        }
+      })
+    }
+  </script>
+</body>
+
+</html>
