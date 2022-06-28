@@ -1,15 +1,22 @@
 <template>
-  <div>
-    <my-header></my-header>
-    <my-footer></my-footer>
+  <div class="app">
+    <my-header title="tabbar案例"></my-header>
+    <component :is="componentName"></component>
+    <my-footer
+      :tabList="tabList"
+      @change-component="componentName = $event"
+    ></my-footer>
   </div>
 </template>
 <script>
+import MyGoodsList from './views/MyGoodsList.vue'
+import MyGoodsSearch from './views/MyGoodsSearch.vue'
+import MyUserInfo from './views/MyUserInfo.vue'
 import MyFooter from './components/MyFooter.vue'
 import MyHeader from './components/MyHeader.vue'
 
 export default {
-  components: { MyHeader, MyFooter },
+  components: { MyHeader, MyFooter, MyGoodsList, MyGoodsSearch, MyUserInfo },
   data() {
     return {
       tabList: [
@@ -28,10 +35,15 @@ export default {
           text: '我的信息',
           componentName: 'MyUserInfo'
         }
-      ]
+      ],
+      componentName: 'MyGoodsList'
     }
   }
 }
 </script>
 
-<style></style>
+<style>
+.app {
+  margin: 50px 0;
+}
+</style>

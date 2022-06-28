@@ -1,16 +1,47 @@
 <template>
   <div class="my-tab-bar">
-    <div class="tab-item">
+    <div
+      :class="['tab-item', { current: currentIndex === index }]"
+      v-for="(item, index) in tabList"
+      :key="index"
+      @click="changeName(index, item.componentName)"
+    >
       <!-- 图标 -->
-      <span class="iconfont"></span>
+      <span :class="`iconfont ${item.iconText}`"></span>
       <!-- 文字 -->
-      <span></span>
+      <span>{{ item.text }}</span>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    tabList: {
+      type: Array,
+      required: true,
+      validator(data) {
+        const len = data.length
+        if (len > 2 && len < 5) {
+          return true
+        } else {
+          throw new Error('数组长度必须在2-5之间')
+        }
+      }
+    }
+  },
+  data() {
+    return {
+      currentIndex: 0
+    }
+  },
+  methods: {
+    changeName(index, compName) {
+      this.currentIndex = index
+      this.$emit('change-component', compName)
+    }
+  }
+}
 </script>
 
 <style lang="less" scoped>
@@ -33,6 +64,9 @@ export default {}
 }
 
 .current {
-  color: #1d7bff;
+  color: green;
+  .iconfont {
+    color: greenyellow;
+  }
 }
 </style>

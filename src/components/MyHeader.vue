@@ -30,7 +30,7 @@ export default {
   height: 45px;
   line-height: 45px;
   text-align: center;
-  background-color: #1d7bff;
+  background-color: hotpink;
   color: #fff;
   position: fixed;
   top: 0;
